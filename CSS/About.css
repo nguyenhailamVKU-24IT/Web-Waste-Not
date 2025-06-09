@@ -1,0 +1,620 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  overflow-x: hidden;
+  margin: 0;
+  padding-top: 80px;
+  /* Match navbar height */
+  min-height: 2000px;
+  /* Ensure page is scrollable */
+}
+
+/* --- Section Base --- */
+section {
+  position: static;
+  width: 100%;
+  overflow: visible;
+}
+
+.about-section {
+  padding: 100px 20px;
+  background: linear-gradient(to right, #f9f9f9, #eef2f3);
+  color: #333;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-container {
+  max-width: 800px;
+  margin: 0 auto;
+  animation: fadeInUp 1.2s ease both;
+}
+
+.about-heading {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  color: #00a860;
+  font-weight: bold;
+}
+
+.about-quote {
+  font-size: 1.3rem;
+  font-style: italic;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.about-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 30px;
+  color: #444;
+}
+
+.about-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 30px;
+  font-size: 1rem;
+  text-align: left;
+  display: inline-block;
+  /* Keep list aligned but centered */
+}
+
+.about-list li {
+  margin: 10px 0;
+  position: relative;
+  padding-left: 24px;
+  text-align: left;
+}
+
+.about-list li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: green;
+  font-weight: bold;
+}
+
+.about-ending {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #222;
+  margin-top: 20px;
+  /* Add space above ending text */
+}
+
+/* Fade-in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Navbar --- */
+.navbar {
+  width: 100%;
+  height: 80px;
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* opacity: 70%; */
+  font-weight: bold;
+  padding: 0 40px;
+  color: white;
+  /* Changed from black to white for visibility */
+  position: fixed;
+  /* Make navbar fixed */
+  top: 0;
+  /* Stick to top */
+  left: 0;
+  z-index: 1000;
+  /* Ensure it stays above other content */
+  transition: transform 0.6s ease-in-out;
+  /* Smooth transition for hiding/showing */
+}
+
+/* Class to hide navbar */
+.navbar.hidden {
+  transform: translateY(-100%);
+  /* Move navbar up to hide */
+}
+
+.logo a {
+  color: white;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  /* Allow menu to expand and center */
+  justify-content: center;
+  /* Center menu items */
+}
+
+.menu a.active {
+  color: orange;
+}
+
+
+.menu a {
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+}
+
+.more span {
+  color: white;
+  text-decoration: none;
+  /* margin-right: 10px; */
+  /* Align with Login button */
+}
+
+.menu a:hover,
+.more span:hover {
+  color: orange;
+}
+
+.login {
+  margin-right: 10px;
+  /* Balance with logo margin */
+}
+
+.login a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 16px;
+  background-color: #333;
+  border-radius: 4px;
+}
+
+.login a:hover {
+  background-color: #555;
+}
+
+/* --- Stats Section --- */
+.stats-section {
+  background-color: #fff;
+  padding: 80px 20px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.stats-button-wrapper {
+  margin-bottom: 40px;
+  animation: fadeInUp 1.2s ease both;
+}
+
+.stats-button {
+  background-color: #000;
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1rem;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.stats-button:hover {
+  background-color: #333;
+}
+
+.stats-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.stat-box {
+  background-color: #f3f3f3;
+  padding: 30px 20px;
+  border-radius: 12px;
+  width: 260px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 1.2s ease both;
+}
+
+.stat-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.stat-box h3 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #111;
+}
+
+.stat-box p {
+  font-size: 1rem;
+  color: #555;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-logo span {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.footer-logo select {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.footer-columns {
+  display: flex;
+  gap: 40px;
+}
+
+.footer-column {
+  text-align: left;
+}
+
+.footer-column h4 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin: 5px 0;
+}
+
+.footer-column ul li a {
+  color: #666;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.footer-column ul li a:hover {
+  color: #000;
+}
+
+/* --- Impact Section --- */
+.impact-section {
+  padding: 80px 20px;
+  background-color: #fff;
+  text-align: left;
+  overflow: hidden;
+}
+
+.impact-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  animation: fadeInUp 1.2s ease both;
+}
+
+.impact-content {
+  flex: 1;
+  min-width: 300px;
+}
+
+.impact-tabs {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.impact-tabs .tab {
+  font-size: 1rem;
+  color: #666;
+  text-decoration: none;
+  padding-bottom: 5px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.impact-tabs .tab.active,
+.impact-tabs .tab:hover {
+  color: #000;
+  border-bottom: 2px solid #000;
+}
+
+.impact-heading {
+  font-size: 3rem;
+  line-height: 1.2;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.impact-highlight {
+  color: #00a860;
+  /* Green accent like in the Pinterest design */
+  font-weight: bold;
+}
+
+.impact-description {
+  font-size: 1.2rem;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.impact-button {
+  display: inline-block;
+  background-color: #000;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.impact-button:hover {
+  background-color: #333;
+}
+
+.impact-image {
+  flex: 1;
+  max-width: 500px;
+}
+
+.impact-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .impact-container {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* ==== Footer Styling ==== */
+footer {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  padding-top: 40px;
+  padding-bottom: 20px;
+  font-size: 14px;
+  line-height: 1.6;
+  position: relative;
+  z-index: 5;
+  overflow: hidden;
+  animation: fadeInUp 1.2s ease both;
+}
+
+footer a {
+  color: #6c757d;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: #343a40;
+  text-decoration: underline;
+}
+
+footer .container {
+  max-width: 1140px;
+  margin: auto;
+  padding: 0 15px;
+}
+
+footer h6 {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+footer p,
+footer li {
+  margin-bottom: 10px;
+}
+
+footer .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+footer .col-md-3,
+footer .col-md-2,
+footer .col-md-4 {
+  flex: 1 1 200px;
+}
+
+footer .text-center {
+  text-align: center;
+}
+
+footer .border-bottom {
+  border-bottom: 1px solid #dee2e6;
+  margin-bottom: 30px;
+}
+
+footer .p-4 {
+  padding: 1.5rem !important;
+}
+@media (max-width: 768px) {
+  .about-heading {
+    font-size: 2rem;
+  }
+
+  .about-quote {
+    font-size: 1.1rem;
+  }
+
+  .about-text,
+  .about-list,
+  .about-ending {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .about-list {
+    display: block;
+  }
+
+  .about-list li {
+    padding-left: 20px;
+  }
+  .stat-box {
+    width: 100%;
+  }
+  .impact-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .impact-tabs {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .impact-heading {
+    font-size: 2rem;
+  }
+
+  .impact-description {
+    font-size: 1rem;
+  }
+
+  .impact-image {
+    max-width: 100%;
+  }
+  footer .row {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hamburger {
+    display: block;
+    margin-left: auto;
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: black;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    z-index: 999;
+    padding: 10px 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .menu.active {
+    display: flex;
+    max-height: 1000px;
+  }
+
+  .menu a {
+    margin: 10px 0;
+  }
+
+  .more {
+    display: none;
+  }
+}
+.login-desktop {
+  display: block; /* Hiện trên màn hình rộng */
+  color: white;
+  margin-left: 20px;
+}
+
+.menu-login {
+  display: none; /* Ẩn trong menu mặc định */
+  color: white;
+}
+
+/* Ẩn hamburger mặc định */
+.hamburger {
+  display: none;
+  font-size: 1.8rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* Màn hình dưới 992px (tablet, mobile) */
+@media (max-width: 991px) {
+  .login-desktop {
+    display: none; /* Ẩn login riêng biệt */
+  }
+
+  .menu-login {
+    display: block; /* Hiện login trong menu */
+  }
+
+  .hamburger {
+    display: block; /* Hiện hamburger */
+  }
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+    color: white;
+    padding: 10px;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    z-index: 1000;
+    min-width: 120px;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f0f0f0;
+}

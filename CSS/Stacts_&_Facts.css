@@ -1,0 +1,514 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  overflow-x: hidden;
+  margin: 0;
+  padding-top: 60px;
+  /* Adjusted to match the navbar height in the screenshot */
+  background-color: #fff;
+  color: #333;
+}
+
+section {
+  position: static;
+  width: 100%;
+  overflow: visible;
+  animation: fadeInUp 1.2s ease both;
+}
+
+/* --- Navbar --- */
+.navbar {
+  width: 100%;
+  height: 80px;
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  padding: 0 40px;
+  color: white;
+  /* Changed from black to white for visibility */
+  position: fixed;
+  /* Make navbar fixed */
+  top: 0;
+  /* Stick to top */
+  left: 0;
+  z-index: 1000;
+  /* Ensure it stays above other content */
+  transition: transform 0.6s ease-in-out;
+  /* Smooth transition for hiding/showing */
+}
+
+/* Class to hide navbar */
+.navbar.hidden {
+  transform: translateY(-100%);
+  /* Move navbar up to hide */
+}
+
+.logo a {
+  color: white;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.menu a.active {
+  color: orange;
+}
+
+
+.menu a {
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+}
+
+.menu a:hover {
+  color: #00a860;
+}
+
+.login a {
+  color: white;
+  text-decoration: none;
+  padding: 5px 15px;
+  background-color: #00a860;
+  border-radius: 20px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.login a:hover {
+  background-color: #008c50;
+}
+
+/* --- Stats Header --- */
+.stats-header {
+  padding: 80px 20px;
+  background-color: #f9f9f9;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 1.2s ease both;
+}
+
+.stats-header h1 {
+  font-size: 2.5rem;
+  color: #00a860;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.header-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  font-style: italic;
+}
+
+/* --- Stats Sections --- */
+.stats-infographic,
+.stats-hotspots,
+.stats-breakdown,
+.stats-impact,
+.stats-solutions {
+  padding: 60px 20px;
+  text-align: left;
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  animation: fadeInUp 1.2s ease both;
+}
+
+.stats-infographic h2,
+.stats-hotspots h2,
+.stats-breakdown h2,
+.stats-impact h2,
+.stats-solutions h2 {
+  font-size: 2rem;
+  color: #111;
+  margin-bottom: 15px;
+  font-weight: 700;
+  position: relative;
+}
+
+.stats-infographic h2::after,
+.stats-hotspots h2::after,
+.stats-breakdown h2::after,
+.stats-impact h2::after,
+.stats-solutions h2::after {
+  content: '';
+  width: 50px;
+  height: 3px;
+  background-color: #00a860;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+}
+
+.stats-infographic p,
+.stats-hotspots p,
+.stats-breakdown p,
+.stats-impact p,
+.stats-solutions p {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.stats-container  {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.stats-container.reverse {
+  flex-direction: row-reverse;
+}
+
+.stats-image {
+  flex: 1;
+  min-width: 300px;
+}
+
+.stats-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.stats-image img:hover {
+  transform: scale(1.02);
+}
+
+.stats-caption {
+  flex: 1;
+  min-width: 300px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.stats-caption p {
+  font-size: 2rem;
+  color: #555;
+  text-align: justify;
+  line-height: 1.6;
+  font-weight: bold;
+}
+
+.back-to-top {
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  padding: 8px 15px;
+  border: 2px solid #00a860;
+  border-radius: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.back-to-top:hover {
+  background-color: #00a860;
+  color: #fff;
+}
+
+.social-icon {
+  font-size: 1.3rem;
+  color: #ccc;
+  margin: 0 10px;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icon:hover {
+  color: #00a860;
+  transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+
+  .stats-container,
+  .stats-container.reverse {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .stats-image,
+  .stats-caption {
+    width: 100%;
+  }
+
+  .stats-image img:hover {
+    transform: scale(1);
+  }
+
+  .stats-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .stats-infographic h2,
+  .stats-hotspots h2,
+  .stats-breakdown h2,
+  .stats-impact h2,
+  .stats-solutions h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* ==== Footer Styling ==== */
+footer {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  padding-top: 40px;
+  padding-bottom: 20px;
+  font-size: 14px;
+  line-height: 1.6;
+  position: relative;
+  z-index: 5;
+  animation: fadeInUp 1.2s ease both;
+}
+
+footer a {
+  color: #6c757d;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: #343a40;
+  text-decoration: underline;
+}
+
+footer .container {
+  max-width: 1140px;
+  margin: auto;
+  padding: 0 15px;
+}
+
+footer h6 {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+footer p,
+footer li {
+  margin-bottom: 10px;
+}
+
+footer .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+footer .col-md-3,
+footer .col-md-2,
+footer .col-md-4 {
+  flex: 1 1 200px;
+}
+
+footer .text-center {
+  text-align: center;
+}
+
+footer .border-bottom {
+  border-bottom: 1px solid #dee2e6;
+  margin-bottom: 30px;
+}
+
+footer .p-4 {
+  padding: 1.5rem !important;
+}
+
+animate-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.3s ease-out;
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 768px) {
+  .about-heading {
+    font-size: 2rem;
+  }
+
+  .about-quote {
+    font-size: 1.1rem;
+  }
+
+  .about-text,
+  .about-list,
+  .about-ending {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .about-list {
+    display: block;
+  }
+
+  .about-list li {
+    padding-left: 20px;
+  }
+  .stat-box {
+    width: 100%;
+  }
+  .impact-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .impact-tabs {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .impact-heading {
+    font-size: 2rem;
+  }
+
+  .impact-description {
+    font-size: 1rem;
+  }
+
+  .impact-image {
+    max-width: 100%;
+  }
+  footer .row {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hamburger {
+    display: block;
+    margin-left: auto;
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: black;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    z-index: 999;
+    padding: 10px 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .menu.active {
+    display: flex;
+    max-height: 1000px;
+  }
+
+  .menu a {
+    margin: 10px 0;
+  }
+
+  .more {
+    display: none;
+  }
+}
+.login-desktop {
+  display: block; /* Hiện trên màn hình rộng */
+  color: white;
+  margin-left: 20px;
+}
+
+.menu-login {
+  display: none; /* Ẩn trong menu mặc định */
+  color: white;
+}
+
+/* Ẩn hamburger mặc định */
+.hamburger {
+  display: none;
+  font-size: 1.8rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* Màn hình dưới 992px (tablet, mobile) */
+@media (max-width: 991px) {
+  .login-desktop {
+    display: none; /* Ẩn login riêng biệt */
+  }
+
+  .menu-login {
+    display: block; /* Hiện login trong menu */
+  }
+
+  .hamburger {
+    display: block; /* Hiện hamburger */
+  }
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+    color: white;
+    padding: 10px;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    z-index: 1000;
+    min-width: 120px;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f0f0f0;
+}

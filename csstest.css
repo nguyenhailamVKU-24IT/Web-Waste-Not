@@ -1,0 +1,614 @@
+@font-face {
+  font-family: 'Porsche Next';
+  src: url('../assets/fonts/porsche-next-latin-regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Porsche Next';
+  src: url('../assets/fonts/porsche-next-latin-semi-bold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Colors */
+  --color-background: #fff;
+  --color-text: #111218;
+  --color-primary: #111218;
+  --color-primary-foreground: #fff;
+  --color-secondary: #f8f7f6;
+  --color-secondary-foreground: #111218;
+  --color-accent: #d8243a;
+  --color-accent-foreground: #fff;
+  --color-muted: #99a4ae;
+  --color-muted-foreground: #50565c;
+  --color-border: #e2e2e2;
+}
+
+body {
+  font-family: 'Porsche Next', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-background);
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Layout */
+.container {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 0 32px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    padding: 0 48px;
+  }
+}
+
+/* Header */
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 24px 0;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo img {
+  height: 32px;
+}
+
+.nav-toggle {
+  display: block;
+  background: none;
+  border: none;
+  color: var(--color-primary-foreground);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 1024px) {
+  .nav-toggle {
+    display: none;
+  }
+}
+
+.nav {
+  display: none;
+}
+
+@media screen and (min-width: 1024px) {
+  .nav {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-list {
+    display: flex;
+    gap: 32px;
+  }
+
+  .nav-item a {
+    color: var(--color-primary-foreground);
+    font-weight: 600;
+    transition: opacity 0.3s ease;
+  }
+
+  .nav-item a:hover {
+    opacity: 0.8;
+  }
+}
+
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-primary);
+  z-index: 200;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.mobile-nav.active {
+  transform: translateX(0);
+}
+
+.mobile-nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+}
+
+.mobile-nav-close {
+  background: none;
+  border: none;
+  color: var(--color-primary-foreground);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.mobile-nav-list {
+  padding: 24px;
+}
+
+.mobile-nav-item {
+  margin-bottom: 16px;
+}
+
+.mobile-nav-item a {
+  color: var(--color-primary-foreground);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary-foreground);
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
+  z-index: -1;
+}
+
+.hero-content {
+  text-align: center;
+  max-width: 800px;
+  z-index: 1;
+}
+
+.hero-title {
+  font-size: 42px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.hero-subtitle {
+  font-size: 20px;
+  margin-bottom: 32px;
+  opacity: 0.9;
+}
+
+@media screen and (min-width: 768px) {
+  .hero-title {
+    font-size: 56px;
+  }
+
+  .hero-subtitle {
+    font-size: 24px;
+  }
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 0;
+  font-family: 'Porsche Next', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-primary-foreground);
+  border: 1px solid var(--color-primary-foreground);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-primary-foreground);
+  color: var(--color-primary);
+}
+
+/* Models Section */
+.models {
+  padding: 80px 0;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.models-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media screen and (min-width: 768px) {
+  .models-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .models-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.model-card {
+  position: relative;
+  overflow: hidden;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  border-radius: 4px;
+  /* Removed transition and hover transform to avoid conflict with .car-card */
+}
+
+.model-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.model-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 24px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  color: white;
+}
+
+.model-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.model-subtitle {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.model-link {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  color: white;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.model-link:hover {
+  text-decoration: underline;
+}
+
+/* New Car Card Effect */
+.car-card {
+  transition: transform 0.3s ease;
+}
+
+.car-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Discover Section */
+.discover {
+  padding: 80px 0;
+  background-color: var(--color-secondary);
+}
+
+.discover-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media screen and (min-width: 768px) {
+  .discover-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .discover-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.discover-card {
+  aspect-ratio: 1/1;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.discover-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.discover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px;
+  color: white;
+  transition: background 0.3s ease;
+}
+
+.discover-card:hover .discover-overlay {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.discover-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* Cookie Consent */
+.cookie-consent {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  z-index: 1000;
+  display: block; /* Changed from 'none' to 'block' to show by default */
+}
+
+.cookie-consent.hidden {
+  display: none;
+}
+
+.cookie-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.cookie-text {
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.cookie-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Footer */
+.footer {
+  background-color: #111218;
+  color: white;
+  padding: 48px 0 24px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+
+@media screen and (min-width: 768px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.footer-column-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.footer-list-item {
+  margin-bottom: 12px;
+}
+
+.footer-list-item a {
+  color: #99a4ae;
+  transition: color 0.3s ease;
+}
+
+.footer-list-item a:hover {
+  color: white;
+}
+
+.footer-newsletter {
+  margin-bottom: 24px;
+}
+
+.footer-newsletter-text {
+  margin-bottom: 16px;
+  color: #99a4ae;
+}
+
+.footer-form {
+  display: flex;
+  margin-bottom: 24px;
+}
+
+.footer-input {
+  flex: 1;
+  padding: 12px 16px;
+  background-color: transparent;
+  border: 1px solid #334156;
+  color: white;
+  font-family: 'Porsche Next', sans-serif;
+}
+
+.footer-input:focus {
+  outline: none;
+  border-color: white;
+}
+
+.footer-submit {
+  padding: 0 24px;
+  background-color: white;
+  color: #111218;
+  border: none;
+  cursor: pointer;
+}
+
+.social-icons {
+  display: flex;
+  gap: 16px;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #334156;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.social-icon:hover {
+  background-color: var(--color-accent);
+}
+
+.footer-bottom {
+  padding-top: 24px;
+  border-top: 1px solid #334156;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .footer-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.footer-copyright {
+  color: #99a4ae;
+  font-size: 14px;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.footer-links a {
+  color: #99a4ae;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: white;
+}

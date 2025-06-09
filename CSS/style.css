@@ -1,0 +1,814 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  overflow-x: hidden;
+  margin: 0;
+  padding-top: 80px;
+  /* Add padding to prevent content from being covered by fixed navbar */
+}
+
+/* --- Section Base --- */
+section {
+  position: static;
+  width: 100%;
+  overflow: visible;
+}
+
+/* --- Panel 1: Slideshow --- */
+.panel1 {
+  background-color: #1a1a1a;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+} 
+
+.slideshow {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.panel1 .slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 1;
+}
+
+.panel1 .slide.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* --- Caption --- */
+.caption {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  color: white;
+  text-align: left;
+  z-index: 2;
+  max-width: 400px;
+}
+
+.caption h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.caption p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.caption button {
+  background-color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.caption button:hover {
+  background-color: #e0e0e0;
+}
+
+/* --- Progress Bar --- */
+.progress-bar {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  height: 5px;
+  width: 0;
+  background-color: white;
+  z-index: 3;
+}
+
+/* --- Navbar --- */
+.navbar {
+  width: 100%;
+  height: 80px;
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  padding: 0 40px;
+  color: white;
+  /* Changed from black to white for visibility */
+  position: fixed;
+  /* Make navbar fixed */
+  top: 0;
+  /* Stick to top */
+  left: 0;
+  z-index: 1000;
+  /* Ensure it stays above other content */
+  transition: transform 0.6s ease-in-out;
+  /* Smooth transition for hiding/showing */
+}
+
+/* Class to hide navbar */
+.navbar.hidden {
+  transform: translateY(-100%);
+  /* Move navbar up to hide */
+}
+
+.logo a {
+  color: white;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.menu a {
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+}
+
+.more span {
+  color: white;
+  text-decoration: none;
+}
+
+.menu a:hover,
+.more span:hover {
+  color: orange;
+}
+
+/* --- Panel 2 (tool grid) --- */
+.panel2 {
+  background-color: white;
+  z-index: 4;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.tool-card {
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: background-size 0.3s ease;
+  background-size: 100%;
+  position: relative;
+}
+
+.tool-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.tool-card:hover::before {
+  transform: translateY(0px);
+}
+
+.tool-card:hover {
+  background-size: 110%;
+}
+
+.tool-card i {
+  font-size: 30px;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.tool-card span {
+  font-size: 16px;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.tool-card:hover i,
+.tool-card:hover span {
+  transform: translateY(-40px);
+}
+
+.gallery-title {
+  font-size: 2.5em;
+  margin: 40px 0;
+  color: #00a860;
+}
+
+/* --- Dot Navigation --- */
+.nav-dots {
+  display: none;
+}
+
+.dot {
+  display: none;
+}
+
+.button-panel {
+  font-weight: bold;
+  border-radius: 2px;
+  color: black;
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.3s ease-out;
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==== Footer Styling ==== */
+footer {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  padding-top: 40px;
+  padding-bottom: 20px;
+  font-size: 14px;
+  line-height: 1.6;
+  position: relative;
+  z-index: 5;
+}
+
+footer a {
+  color: #6c757d;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: #343a40;
+  text-decoration: underline;
+}
+
+footer .container {
+  max-width: 1140px;
+  margin: auto;
+  padding: 0 15px;
+}
+
+footer h6 {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+footer p,
+footer li {
+  margin-bottom: 10px;
+}
+
+footer .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+footer .col-md-3,
+footer .col-md-2,
+footer .col-md-4 {
+  flex: 1 1 200px;
+}
+
+footer .text-center {
+  text-align: center;
+}
+
+footer .border-bottom {
+  border-bottom: 1px solid #dee2e6;
+  margin-bottom: 30px;
+}
+
+footer .p-4 {
+  padding: 1.5rem !important;
+}
+
+.group:hover img {
+  transform: scale(1.05);
+}
+
+.group:hover .bg-gray-600 {
+  background-color: blue;
+  /* hoặc chọn màu khác */
+}
+
+.half-image-text {
+  width: 100%;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  max-height: 600px;
+  overflow: hidden;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.text-box {
+  position: absolute;
+  top: 72%;
+  left: 0;
+  width: 50%;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-50%);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.text-box h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.text-box p {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* --- Related Resources Section --- */
+.related-resources-section {
+  padding: 80px 20px;
+  background-color: white;
+  overflow: hidden;
+}
+
+.related-resources-section h2 {
+  text-align: center;
+  color: #00a860;
+  ;
+}
+
+.related-resources-title {
+  font-size: 2rem;
+  color: #2a4d34;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.resource-card {
+  background-color: #0b7c4b;
+  width: 200;
+  color: #fff;
+  border-radius: 10px;
+  padding-bottom: 60px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  height: 100%;
+  /* Đảm bảo thẻ có chiều cao đồng đều */
+  position: relative;
+}
+
+.resource-card:hover {
+  transform: scale(1.1);
+}
+
+.resource-button {
+  display: block;
+  /* Thay inline-block để dễ căn giữa */
+  background: linear-gradient(90deg, #a3d9a5, #87c68d);
+  /* Gradient màu đẹp mắt */
+  color: black;
+  padding: 20px 25px;
+  /* Tăng padding để nút lớn hơn */
+  border-radius: 25px;
+  /* Tăng bo góc */
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  /* Thêm bóng đổ */
+  transition: all 0.3s ease;
+  /* Hiệu ứng mượt mà */
+  position: absolute;
+  /* Đặt nút tuyệt đối */
+  bottom: 20px;
+  /* Sát đáy với khoảng cách 15px */
+  left: 54%;
+  /* Căn giữa theo chiều ngang */
+  transform: translateX(-50%);
+  /* Điều chỉnh để căn chính xác */
+  margin: -15px;
+  /* Loại bỏ margin để tránh lệch */
+}
+
+.resource-button:hover {
+  background: linear-gradient(90deg, #f3f7f3, #6bb76c);
+  /* Thay đổi gradient khi hover */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  /* Tăng bóng đổ khi hover */
+}
+
+.resource-card img {
+  width: 100%;
+  height: 400px;
+  /* Đặt chiều cao cố định cho hình ảnh */
+  object-fit: cover;
+  /* Giữ tỷ lệ hình ảnh */
+}
+
+.resource-card h3 {
+  font-size: 1.2rem;
+  padding: 15px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.content-image-section {
+  padding: 80px 20px;
+  background-color: #f0f4f8;
+  /* Tông màu nền giống Related Resources */
+  overflow: hidden;
+}
+
+.content-image-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 40px;
+  /* Khoảng cách giữa nội dung và hình ảnh */
+}
+
+.content-left {
+  flex: 1;
+  max-width: 50%;
+}
+
+.content-title {
+  font-size: 2rem;
+  color: #2a4d34;
+  /* Màu chữ giống Related Resources */
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.content-text {
+  font-size: 1.1rem;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.image-right {
+  flex: 1;
+  max-width: 50%;
+}
+
+.image-right img {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.content-button1,
+.content-button2 {
+  display: block;
+  /* Thay inline-block để dễ căn giữa */
+  background: linear-gradient(90deg, #a3d9a5, #87c68d);
+  /* Gradient màu đẹp mắt */
+  color: black;
+  padding: 20px 25px;
+  /* Tăng padding để nút lớn hơn */
+  border-radius: 25px;
+  /* Tăng bo góc */
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  /* Thêm bóng đổ */
+  transition: all 0.3s ease;
+  /* Hiệu ứng mượt mà */
+  position: absolute;
+  /* Đặt nút tuyệt đối */
+  transform: translateX(-50%);
+  /* Điều chỉnh để căn chính xác */
+}
+
+.content-button1 {
+  left: 28%;
+}
+
+.content-button2 {
+  right: 20%;
+}
+.login-desktop {
+  display: block; /* Hiện trên màn hình rộng */
+  color: white;
+  margin-left: 20px;
+}
+/* style.css */
+.menu a.active {
+  color: orange; /* Color for the active menu item */
+}
+
+/* Mobile styles */
+@media (max-width: 767px) {
+  
+  .navbar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  .logo {
+    flex: 1 1 auto;
+  }
+
+  .caption h2 {
+    font-size: 1.5rem;
+  }
+
+  .caption p {
+    font-size: 1rem;
+  }
+
+  .menu a {
+    display: block;
+    margin: 10px 0;
+  }
+
+  .more {
+    display: none;
+    /* ẩn login trên mobile để đưa vào menu */
+  }
+
+  .caption {
+    left: 5%;
+    max-width: 90%;
+  }
+
+  .caption button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+
+  .content-image-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .content-left,
+  .image-right {
+    max-width: 100%;
+  }
+
+  .text-box {
+    width: 90%;
+    left: 5%;
+    padding: 20px;
+  }
+
+  footer .row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  footer .col-md-3,
+  footer .col-md-2,
+  footer .col-md-4 {
+    flex: 1 1 100%;
+    margin-bottom: 20px;
+  }
+
+  .resource-card {
+    padding-bottom: 80px;
+    /* Tăng padding để nút không bị che */
+  }
+
+  .resource-card h3 {
+    font-size: 1rem;
+  }
+
+  .resource-button {
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    bottom: 10px;
+  }
+
+  .resource-card img {
+    height: auto !important;
+    max-height: 200px;
+  }
+
+  .content-title {
+    font-size: 1.4rem;
+  }
+
+  .resources-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .content-text {
+    font-size: 1rem;
+  }
+
+  .content-button1,
+  .content-button2 {
+    position: static;
+    transform: none;
+    display: inline-block;
+    margin-top: 10px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .gallery-title {
+    font-size: 1.6rem;
+  }
+
+  .text-box {
+    width: 90%;
+    top: auto;
+    bottom: 20px;
+    transform: none;
+    padding: 20px;
+  }
+
+  .text-box h2 {
+    font-size: 1.3rem;
+  }
+
+  .text-box p {
+    font-size: 0.95rem;
+  }
+  .panel1 .slideshow {
+    height: 100vh;
+  }
+
+  .panel1 .slide {
+    height: 100%;
+  }
+}
+/* Mobile menu */
+@media (max-width: 767px) {
+  .hamburger {
+    display: block;
+    margin-left: auto;
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: black;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    z-index: 999;
+    padding: 10px 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .menu.active {
+    display: flex;
+    max-height: 1000px;
+  }
+  /* style.css */
+.menu a.active {
+  color: orange; /* Color for the active menu item */
+}
+}
+.login-desktop {
+  display: block; /* Hiện trên màn hình rộng */
+  color: white;
+  margin-left: 20px;
+}
+
+.menu-login {
+  display: none; /* Ẩn trong menu mặc định */
+  color: white;
+}
+
+/* Ẩn hamburger mặc định */
+.hamburger {
+  display: none;
+  font-size: 1.8rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* Màn hình dưới 992px (tablet, mobile) */
+@media (max-width: 991px) {
+  .login-desktop {
+    display: none; /* Ẩn login riêng biệt */
+  }
+
+  .menu-login {
+    display: block; /* Hiện login trong menu */
+  }
+
+  .hamburger {
+    display: block; /* Hiện hamburger */
+  }
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+    color: white;
+    padding: 5px;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    z-index: 1000;
+    min-width: 120px;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+    background-color: white;
+}
+
